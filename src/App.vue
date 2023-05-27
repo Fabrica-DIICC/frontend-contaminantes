@@ -1,18 +1,19 @@
 <script setup>
-import { reactive } from 'vue';
-const theme = reactive({
-  value : 'dark'
-});
+// import { reactive } from 'vue';
+// const theme = reactive({
+//   value: 'dark'
+// });
 
 </script>
 
 <template>
-  <v-app :theme="theme.value">
+  <!-- <v-app :theme="theme.value">
+    <v-app-bar :elevation="2" :title="'Proyecto Contaminantes'">
+    </v-app-bar>
     <v-main>
-      <v-app-bar :elevation="2" :title="'Proyecto Contaminantes'">
-      </v-app-bar>
       <router-view />
     </v-main>
-  </v-app>
+  </v-app> -->
+  <router-view />
 </template>
 

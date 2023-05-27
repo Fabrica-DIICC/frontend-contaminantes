@@ -1,7 +1,7 @@
 <script setup>
-import hw from '../components/Home.vue'
+import Home from '@/components/Home.vue'
 </script>
 
 <template>
-    <hw/>
+    <home />
 </template>

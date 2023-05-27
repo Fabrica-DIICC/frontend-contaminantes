@@ -1,30 +1,33 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 //importar vistas
-import home from "../views/ViewHome.vue";
-import login from "../views/ViewLogin.vue";
-import calculadora from "../views/ViewCalculadora.vue";
-
 const routes = [
   {
     path: "/",
-    name: "Alumno",
-    component: home,
+    name: "Home",
+    component: () => import('@/layouts/HomeLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'init',
+        component: () => import('@/views/ViewHome.vue')
+      }
+    ]
   },
   {
     path: "/calculadora",
     name: "Calculadora",
-    component: calculadora,
+    component: () => import('@/views/ViewCalculadora.vue'),
   },
   {
     path: "/login",
     name: "Login",
-    component: login,
+    component: () => import('@/views/ViewLogin.vue'),
   }
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes: routes,
 });
 

@@ -1,5 +1,3 @@
 <template>
-    <div>
-        Calculadora
-    </div>
+    <p>Calculadora</p>
 </template>
