@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 //importar vistas
 const routes = [
   {
-    path: "/",
+    path: "/home",
     name: "Home",
     component: () => import('@/layouts/HomeLayout.vue'),
     children: [
@@ -15,15 +15,21 @@ const routes = [
     ]
   },
   {
-    path: "/calculadora",
-    name: "Calculadora",
-    component: () => import('@/views/ViewCalculadora.vue'),
+    path: '/',
+    component: () => import('@/layouts/default/Default.vue'),
+    children: [
+      {
+        path: "/calculadora",
+        name: "Calculadora",
+        component: () => import('@/views/ViewCalculadora.vue'),
+      },
+      {
+        path: "/login",
+        name: "Login",
+        component: () => import('@/views/ViewLogin.vue'),
+      }
+    ]
   },
-  {
-    path: "/login",
-    name: "Login",
-    component: () => import('@/views/ViewLogin.vue'),
-  }
 ];
 
 const router = createRouter({
