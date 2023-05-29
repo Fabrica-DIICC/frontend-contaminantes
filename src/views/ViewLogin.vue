@@ -41,12 +41,13 @@
                                         </v-row>
                                     </v-card-text>
                                 </v-col>
-                                <v-col cols="12" md="6" class="blue rounded-bl-xl">
-                                    <div style="text-align: center; padding: 180px 0;">
+                                <v-col cols="12" md="6">
+                                    <div style="color:white; text-align: center; padding: 180px 0;"
+                                        class="background-color rounded-s-xl">
                                         <v-card-text class="white--text">
                                             <h3 class="text-center">¿Todavía no tienes una cuenta?</h3>
                                         </v-card-text>
-                                        <div class="text-center">
+                                        <div class="text-center blue">
                                             <v-btn tile outlined dark @click="step++">REGISTRARSE</v-btn>
                                         </div>
                                     </div>
@@ -55,9 +56,10 @@
                         </v-window-item>
                         <v-window-item :value="2">
                             <v-row>
-                                <v-col cols="12" md="6" class="blue rounded-br-xl">
-                                    <div style="text-align: center; padding: 180px 0;">
-                                        <v-card-text class="white--text">
+                                <v-col cols="12" md="6" class="red .rounded-b-xl">
+                                    <div style="color:white; text-align: center; padding: 180px 0;"
+                                        class="background-color rounded-e-xl">
+                                        <v-card-text class=" white--text">
                                             <h3 class="text-center">¿Ya te has registrado?</h3>
                                         </v-card-text>
                                         <div class="text-center">
@@ -113,13 +115,8 @@
   
 
 <style scoped>
-.v-application .rounded-bl-xl {
-    border-bottom-left-radius: 300px !important;
-
-}
-
-.v-application .rounded-br-xl {
-    border-bottom-right-radius: 300px !important;
+.background-color {
+    background: linear-gradient(45deg, #3f51b5, #2196f3);
 }
 </style>
 
