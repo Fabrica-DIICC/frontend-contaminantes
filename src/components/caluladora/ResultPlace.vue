@@ -1,5 +1,4 @@
 <script setup>
-import { onMounted } from 'vue';
 import { computed } from 'vue';
 
 const props = defineProps({
@@ -34,7 +33,6 @@ const getVars = computed(() => {
             return variants.init
     }
 })
-onMounted(() => getVars())
 </script>
 <template>
     <v-card rounded="s-pill" variant="tonal" class="h-100" :color="getVars.color">
