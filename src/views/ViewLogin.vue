@@ -6,7 +6,7 @@
                     <v-window v-model="step">
                         <v-window-item :value="1">
                             <v-row>
-                                <v-col cols="12" md="6">
+                                <v-col md="6">
                                     <v-card-text class="mt-12">
                                         <h1 class="text-center">Iniciar sesión en tu cuenta</h1>
                                         <v-row align="center" justify="center">
@@ -41,13 +41,12 @@
                                         </v-row>
                                     </v-card-text>
                                 </v-col>
-                                <v-col cols="12" md="6">
-                                    <div style="color:white; text-align: center; padding: 180px 0;"
-                                        class="background-color rounded-s-xl">
-                                        <v-card-text class="white--text">
+                                <v-col md="6">
+                                    <div style="color:white; text-align: center;" class="background-color  h-100">
+                                        <v-card-text class="white--text ">
                                             <h3 class="text-center">¿Todavía no tienes una cuenta?</h3>
                                         </v-card-text>
-                                        <div class="text-center blue">
+                                        <div class="text-center blue h-100">
                                             <v-btn tile outlined dark @click="step++">REGISTRARSE</v-btn>
                                         </div>
                                     </div>
@@ -56,9 +55,9 @@
                         </v-window-item>
                         <v-window-item :value="2">
                             <v-row>
-                                <v-col cols="12" md="6" class="red .rounded-b-xl">
-                                    <div style="color:white; text-align: center; padding: 180px 0;"
-                                        class="background-color rounded-e-xl">
+                                <v-col md="6" class="rounded-b-xl">
+                                    <div style="color:white; text-align: center;"
+                                        class="background-color  h-100 rounded-e-xl">
                                         <v-card-text class=" white--text">
                                             <h3 class="text-center">¿Ya te has registrado?</h3>
                                         </v-card-text>
@@ -67,7 +66,7 @@
                                         </div>
                                     </div>
                                 </v-col>
-                                <v-col cols="12" md="6">
+                                <v-col md="6">
                                     <v-card-text class="mt-12">
                                         <h2 class="text-center">Regístrate para obtener una cuenta</h2>
                                         <v-row align="center" justify="center">
