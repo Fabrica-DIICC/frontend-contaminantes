@@ -1,16 +1,11 @@
 <script setup>
 import ResultPlace from '@/components/caluladora/ResultPlace.vue';
+import AsyncSelect from '@/components/caluladora/AsyncSelect.vue';
+// import { defineAsyncComponent } from 'vue';
 import { ref } from 'vue';
-import axios from 'axios'
+const result = ref('bad')
 
-try {
-    const data = await axios.get('http://fabrica.inf.udec.cl:5001/alimentos')
-    const alimentos = data.data
-} catch (error) {
-    const alimentos = []
-}
-const result = ref('init')
-
+// const asyncSelect = defineAsyncComponent(() => import('@/components/caluladora/AsyncSelect.vue'))
 </script> 
 <template>
     <v-container class="text-center mt-4">
@@ -43,7 +38,12 @@ const result = ref('init')
                     </v-row>
                     <!-- select -->
                     <v-row class="w-75">
-                        <v-select density="comfortable" :items="alimentos"></v-select>
+                        <Suspense>
+                            <async-select></async-select>
+                            <template #fallback>
+                                loading ..
+                            </template>
+                        </Suspense>
                     </v-row>
                     <v-row justify="start">
                         <v-col cols="1">

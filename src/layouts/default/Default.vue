@@ -1,13 +1,8 @@
 <template>
   <v-app>
-    <Suspense>
-      <default-bar />
+    <default-bar />
 
-      <default-view />
-      <template #fallback>
-        <v-progress-circular indeterminate></v-progress-circular>
-      </template>
-    </Suspense>
+    <default-view />
   </v-app>
 </template>
 
