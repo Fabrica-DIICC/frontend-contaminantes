@@ -30,7 +30,7 @@
 
   <!-- Pie de página -->
   <v-footer :color="accentColor" class="pa-0">
-    <v-img src="@/assets/figuras.png" alt="Figuras" width="100%" max-height="100px" cover />
+    <v-img src="@/assets/figuras.png" alt="Figuras" width="100%" min-height="60px" max-height="107" cover />
   </v-footer>
 </template>
   
