@@ -4,7 +4,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { watchEffect } from 'vue';
 
-const result = ref('bad')
+const result = ref('init')
 const weight = ref(0)
 const amount = ref(0)
 const alimento = ref('')
