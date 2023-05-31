@@ -1,6 +1,6 @@
 <template>
   <!-- Encabezado -->
-  <v-container fluid class="pb-0">
+  <v-container fluid>
     <img src="@/assets/Logo.svg" width="60" max-height="122" alt="Logo" />
   </v-container>
   <v-container fluid class="h-75 py-0">
@@ -29,8 +29,8 @@
   </v-container>
 
   <!-- Pie de página -->
-  <v-footer :color="accentColor" class="pa-0">
-    <v-img src="@/assets/figuras.png" alt="Figuras" width="100%" min-height="60px" max-height="107" cover />
+  <v-footer :color="accentColor">
+    <v-img src="@/assets/figuras.png" alt="Figuras" width="100%" min-height="60px" max-height="75" cover />
   </v-footer>
 </template>
   
