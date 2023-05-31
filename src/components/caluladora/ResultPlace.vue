@@ -19,15 +19,15 @@ const variants = {
         imagen: "@/assets/warning.png"
     },
     init: {
-        text: 'Ingrese Informacion requerida',
+        text: 'Complete los campos requiridos',
     }
 }
 
 const getVars = computed(() => {
     switch (props.result) {
-        case 'good':
+        case 'bien':
             return variants.good
-        case 'bad':
+        case 'mal':
             return variants.bad
         default:
             return variants.init
