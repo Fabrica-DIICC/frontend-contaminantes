@@ -25,7 +25,7 @@
                                                         <span class="caption blue--text">¿Olvidaste tu contraseña?</span>
                                                     </v-col>
                                                 </v-row>
-                                                <v-btn color="blue" dark block tile>Iniciar sesión</v-btn>
+                                                <v-btn @click="navegar" color="blue" dark block tile>Iniciar sesión</v-btn>
                                                 <h3 class="text-center grey--text mt-5 mb-3">O inicia sesión usando</h3>
                                                 <div class="d-flex justify-space-between align-center mx-12 mb-11">
                                                     <v-btn color="primary" text>
@@ -121,8 +121,6 @@
 
 
 
-
-
 <script>
 export default {
     data: () => ({
@@ -130,6 +128,11 @@ export default {
     }),
     props: {
         source: String
+    }, methods: {
+        navegar() {
+            // Aquí es donde se realiza la navegación
+            this.$router.push('/calculadora');
+        }
     }
 }
 </script>
