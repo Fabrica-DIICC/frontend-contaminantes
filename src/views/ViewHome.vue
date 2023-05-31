@@ -1,48 +1,51 @@
 <template>
-    <v-app>
-      <v-main>
-        <v-container fluid>
-          <!-- Encabezado -->
-          <v-layout align-center justify-center style="position: relative; height: 202px; background-color: #E0F2F1;">
-            <img src="@/assets/Logo.svg" alt="Logo" style="position: absolute; top: 40px; left: 40px; width: 100px; height: 122px;" />
-          </v-layout>
+  <!-- Encabezado -->
+  <v-container fluid class="pb-0">
+    <img src="@/assets/Logo.svg" width="60" max-height="122" alt="Logo" />
+  </v-container>
+  <v-container fluid class="h-75 py-0">
+    <v-row align="center" justify="center" class="h-100">
+      <v-col class="mx-50">
+        <v-card class="px-16" variant="flat">
+          <h4 class="text-h4 text-center my-8">Toxicologia en Alimentos</h4>
+          <p class="my-10">Conocer la toxicidad que contienen los alimentos que consumes puede resultar en una práctica
+            positiva.</p>
+          <v-container fluid>
+            <v-row no-gutters justify="center" class="mx-10">
+              <v-col>
+                <v-btn variant="outlined" :color="accentColor" @click="goCalculadora">Calculadora</v-btn>
+              </v-col>
+              <v-col>
+                <v-btn :color="accentColor" @click="goLogin">Inicio de Sesion</v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-img src="@/assets/landing.jpeg" class="rounded-s-pill"></v-img>
+      </v-col>
+    </v-row>
+  </v-container>
+
+  <!-- Pie de página -->
+  <v-footer :color="accentColor" class="pa-0">
+    <v-img src="@/assets/figuras.png" alt="Figuras" width="100%" max-height="100px" cover />
+  </v-footer>
+</template>
   
-          <!-- Contenido principal de la página -->
-          <v-layout align-center justify-center>
-            <v-layout column>
-              <v-flex>
-                <h2 class="column-title">Toxicidad de alimentos</h2>
-              </v-flex>
-              <v-flex>
-                <p>Conocer la toxicidad que contienen los alimentos que consumes puede resultar en una práctica positiva.</p>
-              </v-flex>
-            </v-layout>
-          </v-layout>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+const accentColor = 'deep-orange-darken-1'
+
+const goCalculadora = () => {
+  router.push({name: 'Calculadora'})
+}
+const goLogin = () => {
+  router.push({name: 'Login'})
+}
+</script>
   
-          <!-- Pie de página -->
-          <v-footer color="#FF724A" app style="width: 100%; height: 162px; background-color: #FF724A; flex: none; order: 1; align-self: stretch; flex-grow: 0;">
-            <v-container fluid>
-              <v-layout align-center justify-center>
-                <img src="@/assets/figuras.png" alt="Figuras" style="width: 100%; height: 162px;" />
-              </v-layout>
-            </v-container>
-          </v-footer>
-        </v-container>
-      </v-main>
-    </v-app>
-  </template>
-  
-  <script>
-  export default {
-    name: 'Home'
-  }
-  </script>
-  
-  <style>
-  .column-title {
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  </style>
   
