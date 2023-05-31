@@ -25,14 +25,14 @@
                                                         <span class="caption blue--text">¿Olvidaste tu contraseña?</span>
                                                     </v-col>
                                                 </v-row>
-                                                <v-btn @click="navegar" color="blue" dark block tile>Iniciar sesión</v-btn>
+                                                <v-btn @click="navegar" color="deep-orange-lighten-1" dark block tile>Iniciar sesión</v-btn>
                                                 <h3 class="text-center grey--text mt-5 mb-3">O inicia sesión usando</h3>
                                                 <div class="d-flex justify-space-between align-center mx-12 mb-11">
-                                                    <v-btn color="primary" text>
+                                                    <v-btn :color="accentColor" text>
                                                         <v-icon left>mdi-google</v-icon>
                                                         Google
                                                     </v-btn>
-                                                    <v-btn color="primary" text>
+                                                    <v-btn :color="accentColor" text>
                                                         <v-icon left>mdi-microsoft</v-icon>
                                                         Microsoft
                                                     </v-btn>
@@ -42,7 +42,7 @@
                                     </v-card-text>
                                 </v-col>
                                 <v-col md="6">
-                                    <div style="color:white; text-align: center;" class="background-color  h-100">
+                                    <div style="color:white; text-align: center;" class="background-color h-100">
                                         <v-card-text class="white--text ">
                                             <h3 class="text-center">¿Todavía no tienes una cuenta?</h3>
                                         </v-card-text>
@@ -115,24 +115,23 @@
 
 <style scoped>
 .background-color {
-    background: linear-gradient(45deg, #3f51b5, #2196f3);
+    background: linear-gradient(45deg, #FF5722, #FF9800);
 }
 </style>
 
 
 
-<script>
-export default {
-    data: () => ({
-        step: 1
-    }),
-    props: {
-        source: String
-    }, methods: {
-        navegar() {
-            // Aquí es donde se realiza la navegación
-            this.$router.push('/calculadora');
-        }
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const accentColor = 'deep-orange'
+defineProps({
+    source: {
+        type: String
     }
-}
+})
+const router = useRouter()
+const navegar = () => { router.push({ name: 'Generador' }) }
+const step = ref(1)
 </script>
