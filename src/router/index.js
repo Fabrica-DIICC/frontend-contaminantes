@@ -3,19 +3,20 @@ import { createRouter, createWebHistory } from "vue-router";
 //importar vistas
 const routes = [
   {
-    path: "/home",
-    name: "Home",
+    path: "/",
+    name: "init",
+    redirect: { path: "/home" },
     component: () => import('@/layouts/HomeLayout.vue'),
     children: [
       {
-        path: '',
-        name: 'init',
+        path: '/home',
+        name: 'Home',
         component: () => import('@/views/ViewHome.vue')
       }
     ]
   },
   {
-    path: '/',
+    path: '/init ',
     component: () => import('@/layouts/default/Default.vue'),
     children: [
       {
