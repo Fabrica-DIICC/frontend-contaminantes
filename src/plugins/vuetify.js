@@ -6,8 +6,8 @@
 
 // Styles
 import "@mdi/font/css/materialdesignicons.css";
-import "@fortawesome/fontawesome-free/css/all.css";
-import "material-design-icons-iconfont/dist/material-design-icons.css";
+// import "@fortawesome/fontawesome-free/css/all.css";
+// import "material-design-icons-iconfont/dist/material-design-icons.css";
 import "vuetify/styles";
 
 // Composables
@@ -24,8 +24,8 @@ export default createVuetify({
         },
       },
     },
-    icons: {
-      iconfont: "fa" || "md",
-    },
+    // icons: {
+    //   iconfont: "fa" || "md",
+    // },
   },
 });
