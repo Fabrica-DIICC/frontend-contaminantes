@@ -16,7 +16,9 @@
               <v-col class="align-center" justify="center">
                 <h2 class="text-left pl-16 mt-16 text-black"><strong>{{ slide.title1 }}</strong></h2>
                 <p class="pl-16 text-justify text-black">{{ slide.paragraph1 }}</p>
-                <h2 class="text-left pl-16 mt-16 text-black"><strong>{{ slide.title2.replace('tranquilízate', '<span class=\'blue-grey--text text--lighten-5\'>tranquilízate</span>') }}</strong></h2>
+                <h2 class="text-left pl-16 mt-16 text-black">
+                  <strong v-html="highlightText(slide.title2)"></strong>
+                </h2>
                 <p class="pl-16 text-justify text-black">{{ slide.paragraph2 }}</p>
               </v-col>
               <v-col class="align-center" justify="center">
@@ -56,12 +58,10 @@ export default {
       ],
     }
   },
+  methods: {
+    highlightText(text) {
+      return text.replace('Tranquilízate', '<span class="text-deep-orange-darken-1">Tranquilízate</span>');
+    },
+  },
 }
 </script>
-
-<style scoped>
-.my-image {
-  max-width: 100%;
-  height: auto;
-}
-</style>
