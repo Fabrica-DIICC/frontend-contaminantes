@@ -1,7 +1,4 @@
 <template>
-    <div id="app">
-        <ChartCarousel />
-    </div>
     <BarChart />
 </template>
   
