@@ -1,223 +1,118 @@
 <template>
-    <v-carousel hide-delimiter-background height="400px">
+    <v-carousel hide-delimiter-background height="500px" show-arrows="hover" delimiter-icon="mdi-circle-small">
         <v-carousel-item>
             <v-container class="fill-height">
                 <v-row class="h-100">
                     <v-col>
-                        <Bar id="chart-1" :options="chartOptions" :data="chartData[0]"></Bar>
+                        <Bar id="chart-16" :options="optionsChile" :data="chartDataChile"></Bar>
                     </v-col>
                 </v-row>
             </v-container>
         </v-carousel-item>
 
-        <v-carousel-item>
+        <v-carousel-item v-for="region in index" :key="region">
             <v-container class="fill-height">
                 <v-row class="h-100">
                     <v-col>
-                        <Bar id="chart-2" :options="chartOptions" :data="chartData[1]"></Bar>
+                        <Bar :id="chart + region" :options="chartOptions[region]" :data="chartData[region]"></Bar>
                     </v-col>
                 </v-row>
             </v-container>
         </v-carousel-item>
-
-        <v-carousel-item>
-            <v-container class="fill-height">
-                <v-row class="h-100">
-                    <v-col>
-                        <Bar id="chart-3" :options="chartOptions" :data="chartData[2]"></Bar>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-carousel-item>
-
-        <v-carousel-item>
-            <v-container class="fill-height">
-                <v-row class="h-100">
-                    <v-col>
-                        <Bar id="chart-4" :options="chartOptions" :data="chartData[3]"></Bar>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-carousel-item>
-
-        <v-carousel-item>
-            <v-container class="fill-height">
-                <v-row class="h-100">
-                    <v-col>
-                        <Bar id="chart-5" :options="chartOptions" :data="chartData[4]"></Bar>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-carousel-item>
-
     </v-carousel>
 </template>
   
-<script>
+<script setup>
 import { Bar } from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
+import { useAppStore } from '@/store/app';
+import { ref } from 'vue';
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+const store = useAppStore()
+const { regiones } = storeToRefs(store)
+const chartOptions = []
+const index = Array.from({ length: 15 }, (value, index) => index)
+const chartData = ref([])
+const chartDataChile = {
 
-export default {
-    name: 'ChartCarousel',
-    components: { Bar },
-    data() {
-        return {
-            chartData: [
+    labels: ['As', "As i", "Cd", "Hg", "Pb"],
+    datasets: [
+        {
+            label: 'Tasa de Riesgo',
+            data: [store.nacional.formula.As, store.nacional.formula['As i'], store.nacional.formula.Cd, store.nacional.formula.Hg, store.nacional.formula.Pb],
+            backgroundColor: '#FF6384',
+        }
+    ]
+}
+const optionsChile = {
+    maintainAspectRatio: false,
+    scales: {
+        y: {
+            title: {
+                display: true,
+                text: 'mg/Kg',
+            }
+        },
+        x: {
+            title: {
+                display: true,
+                text: 'Contaminantes',
+            }
+        }
+    },
+    plugins: {
+        title: {
+            text: `Chile (Nivel Nacional)(${store.nacional.c_personas})`,
+            display: true,
+        }
+    },
+    animation: false
+}
+
+onMounted(() => {
+    for (const region in regiones.value) {
+        console.log(region)
+        const regionObject = regiones.value[region]
+        chartData.value.push({
+            labels: ['As', "As i", "Cd", "Hg", "Pb"],
+            datasets: [
                 {
-                    labels: ['Mercurio', 'Arsenico', 'Cadmio'],
-                    datasets: [
-                        {
-                            data: [0.05, 0.02, 0.03],
-                            backgroundColor: '#FF6384',
-                            borderColor: '#FF6384',
-                            borderWidth: 1
-                        }
-                    ]
-                },
-                {
-                    labels: ['Mercurio', 'Arsenico', 'Cadmio'],
-                    datasets: [
-                        {
-                            data: [0.01, 0.04, 0.02],
-                            backgroundColor: '#36A2EB',
-                            borderColor: '#36A2EB',
-                            borderWidth: 1
-                        }
-                    ]
-                },
-                {
-                    labels: ['Mercurio', 'Arsenico', 'Cadmio'],
-                    datasets: [
-                        {
-                            data: [0.05, 0.04, 0.02],
-                            backgroundColor: '#FFCE56',
-                            borderColor: '#FFCE56',
-                            borderWidth: 1
-                        }
-                    ]
-                },
-                {
-                    labels: ['Mercurio', 'Arsenico', 'Cadmio'],
-                    datasets: [
-                        {
-                            data: [0.03, 0.06, 0.01],
-                            backgroundColor: '#4BC0C0',
-                            borderColor: '#4BC0C0',
-                            borderWidth: 1
-                        }
-                    ]
-                },
-                {
-                    labels: ['Mercurio', 'Arsenico', 'Cadmio'],
-                    datasets: [
-                        {
-                            data: [0.02, 0.05, 0.04],
-                            backgroundColor: '#E7E9ED',
-                            borderColor: '#E7E9ED',
-                            borderWidth: 1
-                        }
-                    ]
+                    label: 'Tasa de Riesgo',
+                    data: [regionObject.formula.As, regionObject.formula['As i'], regionObject.formula.Cd, regionObject.formula.Hg, regionObject.formula.Pb],
+                    backgroundColor: '#FF6384',
                 }
-            ],
-            chartOptions: {
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'mg/Kg',
-                            font: {
-                                size: 8,
-                                family: 'Arial'
-                            },
-                            color: '#666'
-                        }
-                    }
-                },
-                plugins: {
+            ]
+        })
+        chartOptions.push({
+            maintainAspectRatio: false,
+            scales: {
+                y: {
                     title: {
-                        text: 'salmón',
                         display: true,
-                        font: {
-                            size: 12,
-                            family: 'Arial'
-                        },
-                        color: '#333'
+                        text: 'mg/Kg',
                     }
                 },
-                animation: {
-                    duration: 1000,
-                    easing: 'easeOutBounce'
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Contaminantes',
+                    }
                 }
             },
-            currentChartIndex: 0,
-            foodNames: ['salmón', 'atún', 'sardina', 'mejillón', 'ostra'],
-            colors: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#E7E9ED']
-        };
-    },
-    mounted() {
-        this.updateChartTitle();
-        this.updateChartColor();
-    },
-    methods: {
-        previousChart() {
-            this.currentChartIndex =
-                (this.currentChartIndex - 1 + this.chartData.length) % this.chartData.length;
-        },
-        nextChart() {
-            this.currentChartIndex = (this.currentChartIndex + 1) % this.chartData.length;
-        },
-        updateChartTitle() {
-            const foodName = this.foodNames[this.currentChartIndex];
-            const chartTitle = `${foodName}`;
-            this.chartOptions.plugins.title.text = chartTitle;
-        },
-        updateChartColor() {
-            const color = this.colors[this.currentChartIndex];
-            this.chartData[this.currentChartIndex].datasets[0].backgroundColor = color;
-            this.chartData[this.currentChartIndex].datasets[0].borderColor = color;
-        }
-    },
-    watch: {
-        currentChartIndex() {
-            this.updateChartTitle();
-            this.updateChartColor();
-        }
+            plugins: {
+                title: {
+                    text: `${region}º region (${regionObject.c_personas})`,
+                    display: true,
+                }
+            },
+
+            animation: false
+        })
     }
-};
+})
+
 </script>
   
-<style scoped>
-.carousel-container {
-    width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-}
-
-#chart-container {
-    width: 100%;
-    height: 400px;
-    margin-bottom: 20px;
-}
-
-.carousel-container button {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.2s ease-in-out;
-}
-
-/* button hover */
-.carousel-container button:hover {
-    background: #FF5722;
-    color: #fff;
-    border-color: #FF5722;
-}
-</style>
