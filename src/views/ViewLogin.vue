@@ -132,6 +132,6 @@ defineProps({
     }
 })
 const router = useRouter()
-const navegar = () => { router.push({ name: 'Generador' }) }
+const navegar = () => { router.push({ name: 'Generador de Informes' }) }
 const step = ref(1)
 </script>
