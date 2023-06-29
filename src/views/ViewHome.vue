@@ -4,7 +4,7 @@
     <img src="@/assets/Logo.svg" width="60" max-height="122" alt="Logo" />
   </v-container>
   <v-container fluid class="h-75 py-0">
-    <v-row align="center" justify="center" class="h-100">
+    <v-row align-content="center" justify="center" class="h-100">
       <v-col class="mx-50">
         <v-card class="px-16" variant="flat">
           <h4 class="text-h4 text-center my-8">Toxicologia en Alimentos</h4>
@@ -30,7 +30,7 @@
 
   <!-- Pie de página -->
   <v-footer :color="accentColor">
-    <v-img src="@/assets/figuras.png" alt="Figuras" width="100%" min-height="60px" max-height="75" cover />
+  <v-img src="@/assets/figuras.png" alt="Figuras" width="100%" min-height="60px" max-height="114" cover />
   </v-footer>
 </template>
   
