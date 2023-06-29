@@ -35,11 +35,11 @@ const routes = [
       },
       {
         path: "/generator",
-        name: "Generador de Informes",
         component: () => import('@/views/GeneratorView.vue'),
         children: [
           {
             path: "",
+            name:'Filtros',
             component: () => import('@/components/Generador/DataFilters.vue')
           },
           {
