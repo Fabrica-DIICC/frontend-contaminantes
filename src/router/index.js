@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    name: "init",
     redirect: { path: "/home" },
     component: () => import('@/layouts/HomeLayout.vue'),
     children: [
@@ -31,7 +30,7 @@ const routes = [
       },
       {
         path: "/generator",
-        name: "Generador",
+        name: "Generador de Informes",
         component: () => import('@/views/GeneratorView.vue')
       }
     ]
