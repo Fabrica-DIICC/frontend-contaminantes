@@ -36,7 +36,23 @@ const routes = [
       {
         path: "/generator",
         name: "Generador de Informes",
-        component: () => import('@/views/GeneratorView.vue')
+        component: () => import('@/views/GeneratorView.vue'),
+        children: [
+          {
+            path: "",
+            component: () => import('@/components/Generador/DataFilters.vue')
+          },
+          {
+            path: "result",
+            name: "Resultados",
+            component: () => import('@/components/Generador/ResultadoGenerador.vue')
+          }
+        ]
+      },
+      {
+        path: "/moreInfo",
+        name: '',
+        component: () => import('@/views/ViewInfo.vue')
       }
     ]
   },
