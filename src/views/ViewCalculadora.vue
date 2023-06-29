@@ -18,19 +18,16 @@ const accentColor = "deep-orange";
 // const alimentos = ref([]);
 const items = ref([]);
 const selection = ref([])
-const baseUrl = "http://fabrica.inf.udec.cl:5001/";
+// const baseUrl = "http://fabrica.inf.udec.cl:5001/";
 
 const contaminantes = ref(null)
 onMounted(async () => {
-  const result = await axios.get(baseUrl + 'contaminantes')
+  const result = await axios.get(import.meta.env.VITE_API_URL + 'contaminantes')
   contaminantes.value = result.data
 })
 watch(selection, async (actual) => {
-  let contaminantes = []
-  for (const cont in actual)
-    contaminantes.push(actual[cont])
-  const result = await axios.post(baseUrl + 'alimentos', {
-    contaminantes
+  const result = await axios.post(import.meta.env.VITE_API_URL + 'alimentos', {
+    contaminantes: actual
   })
   items.value = result.data;
 })
@@ -45,9 +42,9 @@ watch(selection, async (actual) => {
 // });
 const askResult = async () => {
   try {
-    const data = await axios.post(baseUrl + "calculadora", {
+    const data = await axios.post(import.meta.env.VITE_API_URL + "calculadora", {
       weight: parseInt(weight.value),
-      amount: parseInt(amount.value),
+      amount: parseFloat(amount.value),
       food: alimento.value,
     });
     result.value = data.data.estado;
@@ -65,10 +62,9 @@ const querySelector = async (v) => {
   loading.value = false;
 };
 
-watch(search, (val) => {
-  if (val === '') items.value = []
-  if (val && val !== alimento.value && querySelector(val)) return
 
+watch(search, (val) => {
+  if (val && val !== alimento.value && querySelector(val)) return
 });
 
 </script>
