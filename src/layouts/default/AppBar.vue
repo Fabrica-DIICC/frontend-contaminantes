@@ -1,11 +1,13 @@
 <template>
-  <v-app-bar flat collapse="" class="py-4 px-10" scroll-behavior="hide" >
+  <v-toolbar color="white">
     <v-btn density="comfortable" icon="mdi-arrow-left" @click="goBack"></v-btn>
-  </v-app-bar>
+    <v-toolbar-title class="text-center text-h4">{{ $route.name }}</v-toolbar-title>
+    <v-btn density="comfortable" disabled></v-btn>
+  </v-toolbar>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import {  useRouter } from 'vue-router';
 
 const router = useRouter()
 const goBack = () => {
