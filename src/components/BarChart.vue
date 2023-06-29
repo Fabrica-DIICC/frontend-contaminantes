@@ -1,12 +1,56 @@
 <template>
-    <div class="carousel-container">
-        <div id="chart-container">
-            <Bar :id="`chart-${currentChartIndex}`" :options="chartOptions" :data="chartData[currentChartIndex]" />
-        </div>
+    <v-carousel hide-delimiter-background height="400px">
+        <v-carousel-item>
+            <v-container class="fill-height">
+                <v-row class="h-100">
+                    <v-col>
+                        <Bar id="chart-1" :options="chartOptions" :data="chartData[0]"></Bar>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-carousel-item>
 
-        <button @click="previousChart">Anterior</button>
-        <button @click="nextChart">Siguiente</button>
-    </div>
+        <v-carousel-item>
+            <v-container class="fill-height">
+                <v-row class="h-100">
+                    <v-col>
+                        <Bar id="chart-2" :options="chartOptions" :data="chartData[1]"></Bar>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-carousel-item>
+
+        <v-carousel-item>
+            <v-container class="fill-height">
+                <v-row class="h-100">
+                    <v-col>
+                        <Bar id="chart-3" :options="chartOptions" :data="chartData[2]"></Bar>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-carousel-item>
+
+        <v-carousel-item>
+            <v-container class="fill-height">
+                <v-row class="h-100">
+                    <v-col>
+                        <Bar id="chart-4" :options="chartOptions" :data="chartData[3]"></Bar>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-carousel-item>
+
+        <v-carousel-item>
+            <v-container class="fill-height">
+                <v-row class="h-100">
+                    <v-col>
+                        <Bar id="chart-5" :options="chartOptions" :data="chartData[4]"></Bar>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-carousel-item>
+
+    </v-carousel>
 </template>
   
 <script>
@@ -78,14 +122,14 @@ export default {
                 }
             ],
             chartOptions: {
-                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         title: {
                             display: true,
                             text: 'mg/Kg',
                             font: {
-                                size: 18,
+                                size: 8,
                                 family: 'Arial'
                             },
                             color: '#666'
@@ -97,7 +141,7 @@ export default {
                         text: 'salmón',
                         display: true,
                         font: {
-                            size: 24,
+                            size: 12,
                             family: 'Arial'
                         },
                         color: '#333'
