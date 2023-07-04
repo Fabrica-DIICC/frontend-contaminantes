@@ -1,5 +1,5 @@
 <template>
-  <v-table height="300px" fixed-header>
+  <v-table height="550px" fixed-header>
     <thead>
       <tr>
         <th class="text-left" v-for="title in index" :key="title">

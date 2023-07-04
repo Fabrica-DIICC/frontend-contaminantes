@@ -1,18 +1,16 @@
 <template>
     <v-container>
         <v-row>
-            <h5 class="text-h5">Graficas de Peligro</h5>
+            <h6 class="text-h6">Graficas de Peligro</h6>
         </v-row>
         <v-row>
             <BarChart></BarChart>
         </v-row>
         <v-row>
             <v-col>
-                <h5 class="text-h5">Datos de Consumo (100 primeros)</h5>
+                <h6 class="text-h6">Datos de Consumo (100)</h6>
             </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
+            <v-col align="end">
                 <v-btn variant="outlined" color="primary" rounded="" @click="downloadFile">Exportar Datos</v-btn>
             </v-col>
         </v-row>
