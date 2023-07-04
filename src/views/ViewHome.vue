@@ -47,7 +47,9 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
+import { useAuth0 } from '@auth0/auth0-vue'
 
+const { loginWithRedirect } = useAuth0()
 const router = useRouter()
 const accentColor = 'deep-orange-darken-1'
 
@@ -56,7 +58,8 @@ const goCalculadora = () => {
 }
 
 const goLogin = () => {
-  router.push({ name: 'Login' })
+  // router.push({ name: 'Login' })
+  loginWithRedirect()
 }
 
 const goInfo = () => {
