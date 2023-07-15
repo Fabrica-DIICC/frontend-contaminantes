@@ -17,6 +17,7 @@
               </v-col>
               <v-col>
                 <v-btn :color="accentColor" @click="goLogin">Inicio de Sesion</v-btn>
+                <v-btn :color="accentColor" @click="goLogout">Logout</v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -34,7 +35,7 @@
       <v-container fluid>
         <v-row align-content="center">
           <v-col class="text-center" align-self="center">
-            <v-btn variant="plain" class="ma-0 pa-0" @click="goInfo" ripple="false">
+            <v-btn variant="plain" class="ma-0 pa-0" @click="goInfo">
               Ver mas
             </v-btn>
           </v-col>
@@ -49,7 +50,8 @@
 import { useRouter } from 'vue-router';
 import { useAuth0 } from '@auth0/auth0-vue'
 
-const { loginWithRedirect } = useAuth0()
+document.title = 'OpenCRA'
+const auth0 = useAuth0()
 const router = useRouter()
 const accentColor = 'deep-orange-darken-1'
 
@@ -57,10 +59,25 @@ const goCalculadora = () => {
   router.push({ name: 'Calculadora' })
 }
 
-const goLogin = () => {
+const goLogin = async () => {
   // router.push({ name: 'Login' })
-  loginWithRedirect()
+  try {
+    await auth0.loginWithPopup()
+    console.log(await auth0.getAccessTokenSilently())
+    await router.push({ name: "Filtros" })
+
+
+  } catch (err) {
+    console.log(err.message)
+    await router.replace({ name: "Home" })
+  }
 }
+
+const goLogout = () => {
+
+  auth0.logout()
+}
+
 
 const goInfo = () => {
   router.push('/moreInfo')
