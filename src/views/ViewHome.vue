@@ -49,11 +49,13 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { useAuth0 } from '@auth0/auth0-vue'
+import { useAuthStore } from '@/store/auth';
 
 document.title = 'OpenCRA'
 const auth0 = useAuth0()
 const router = useRouter()
 const accentColor = 'deep-orange-darken-1'
+const store = useAuthStore()
 
 const goCalculadora = () => {
   router.push({ name: 'Calculadora' })
@@ -63,7 +65,10 @@ const goLogin = async () => {
   // router.push({ name: 'Login' })
   try {
     await auth0.loginWithPopup()
-    console.log(await auth0.getAccessTokenSilently())
+    // console.log(await auth0.getAccessTokenSilently())
+    const token = await auth0.getAccessTokenSilently()
+    console.log(token)
+    store.token = token
     await router.push({ name: "Filtros" })
 
 

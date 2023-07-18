@@ -140,6 +140,8 @@ import { nextTick } from 'vue';
 import { useAppStore } from '@/store/app'
 import { useRouter } from 'vue-router';
 import LoadingComponent from '../LoadingComponent.vue';
+import { useAuthStore } from '@/store/auth';
+import auth0 from '@/plugins/auth0';
 
 const loading = ref(false)
 const baseUrl = 'http://fabrica.inf.udec.cl:5001/'
@@ -155,19 +157,28 @@ const selectedFoods = ref([])
 const activeToxic = ref({})
 const store = useAppStore()
 const router = useRouter()
+const authStore = useAuthStore()
 // const socialStatus = ["Alta", "Media Alta", "Media", "Media Baja", "Baja"]
 // const claseValue = ref([])
 
 onMounted(async () => {
   try {
-    const data = await axios.get(baseUrl + 'alimentos')
+    const data = await axios.get(baseUrl + 'alimentos', {
+      headers: {
+        Authorization: `Bearer ${authStore.token}`
+      }
+    })
     alimentos.value = data.data
   } catch (error) {
     alimentos.value = []
   }
 
   try {
-    const data = await axios.get(baseUrl + 'contaminantes')
+    const data = await axios.get(baseUrl + 'contaminantes', {
+      headers: {
+        Authorization: `Bearer ${authStore.token}`
+      }
+    })
     toxics.value = data.data
     for (const toxic in toxics.value)
       activeToxic.value[toxic.alias] = ref(false)
@@ -178,10 +189,10 @@ onMounted(async () => {
 })
 
 const onFoodChange = async () => {
-  if (foodValue.value === "") return
-  alimentos.value = alimentos.value.filter((v) => v != foodValue.value)
-  selectedFoods.value.push({ nombre: foodValue.value, as: ref(""), as_i: ref(""), hg: ref(""), pb: ref(""), cd: ref("") })
-  foodValue.value = ""
+  if (foodValue.value !== "") 
+    alimentos.value = alimentos.value.filter((v) => v != foodValue.value)
+    selectedFoods.value.push({ nombre: foodValue.value, as: ref(""), as_i: ref(""), hg: ref(""), pb: ref(""), cd: ref("") })
+    foodValue.value = ""
   await nextTick()
 
 }
@@ -212,10 +223,11 @@ const submitFilters = async () => {
       "Pb": checkIfEmpty(food.pb),
     })
   console.log(alimentos, sexo.value, edad.value, peso.value)
+  authStore.token = await auth0.getAccessTokenSilently()
   if ((await store.getFiltersResult(sexo.value, alimentos, peso.value, edad.value)))
     router.push({ name: 'Resultados' })
   else
-    alert(store.result)
+    alert(store.result.message)
 
   loading.value = false
 }
