@@ -12,7 +12,6 @@ const result = ref("init");
 const weight = ref(0);
 const amount = ref(0);
 const alimento = ref("");
-const isValid = ref(false);
 const search = ref(null);
 const accentColor = "deep-orange";
 // const alimentos = ref([]);
@@ -73,8 +72,6 @@ watch(search, (val) => {
     <h4 class="text-h4">{{ $route.name }}</h4>
   </v-container> -->
 
-  <v-form v-model="isValid">
-    <v-container fluid>
       <v-row align-content="center" justify="center">
         <v-col class="mx-10">
           <v-row align-content="center">
@@ -137,6 +134,4 @@ watch(search, (val) => {
           <ResultPlace :result="result"></ResultPlace>
         </v-col>
       </v-row>
-    </v-container>
-  </v-form>
 </template>

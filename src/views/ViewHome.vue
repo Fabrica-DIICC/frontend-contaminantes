@@ -1,7 +1,14 @@
 <template>
   <!-- Encabezado -->
   <v-container fluid>
-    <img src="@/assets/Logo.svg" width="60" max-height="122" alt="Logo" />
+    <v-row>
+      <v-col cols="11">
+        <img src="@/assets/Logo.svg" width="60" max-height="122" alt="Logo" />
+      </v-col>
+      <v-col cols="1" v-if="isLogin">
+        <v-btn density="comfortable" icon="mdi-logout" @click="leave"></v-btn>
+      </v-col>
+    </v-row>
   </v-container>
   <v-container fluid class="h-75 py-0">
     <v-row align-content="center" justify="center" class="h-100">
@@ -17,7 +24,6 @@
               </v-col>
               <v-col>
                 <v-btn :color="accentColor" @click="goLogin">Inicio de Sesion</v-btn>
-                <v-btn :color="accentColor" @click="goLogout">Logout</v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -30,9 +36,9 @@
   </v-container>
 
   <!-- Pie de página -->
-  <v-footer :color="accentColor" dark>
+  <v-footer :color="accentColor" height="200px">
     <v-img src="@/assets/figuras.png" max-height="110px" cover>
-      <v-container fluid>
+      <v-container>
         <v-row align-content="center">
           <v-col class="text-center" align-self="center">
             <v-btn variant="plain" class="ma-0 pa-0" @click="goInfo">
@@ -78,9 +84,14 @@ const goLogin = async () => {
   }
 }
 
-const goLogout = () => {
+const isLogin = () => {
+  return auth0.isAuthenticated.value
+}
 
-  auth0.logout()
+const leave = async ()=>{
+await auth0.logout({logoutParams: {
+  returnTo: window.location.origin.concat('/home')
+}})
 }
 
 
