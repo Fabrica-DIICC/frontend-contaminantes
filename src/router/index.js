@@ -1,51 +1,48 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { authGuard } from "@auth0/auth0-vue";
 
 //importar vistas
 const routes = [
   {
+    path: "/authCallBack",
+    component: () => import('@/components/auth0/AuthComponent.vue')
+  },
+  {
     path: "/",
-    redirect: { path: "/home" },
+    redirect: {name: "Home"},
     component: () => import('@/layouts/HomeLayout.vue'),
     children: [
       {
-        path: '/home',
-        name: 'Home',
+        path: "/home",
+        name: "Home",
         component: () => import('@/views/ViewHome.vue')
       }
     ]
   },
   {
-    path: '/init ',
+    path:"/apps",
     component: () => import('@/layouts/default/Default.vue'),
     children: [
       {
-        path: "/calculadora",
+        path: "calculadora",
         name: "Calculadora",
         component: () => import('@/views/ViewCalculadora.vue'),
       },
       {
-        path: "/login",
-        name: "Login",
-        component: () => import('@/views/ViewLogin.vue'),
-      },     
-       {
-        path: "/chart",
-        name: "chart",
-        component: () => import('@/views/ChartTest.vue'),
-      },
-      {
-        path: "/generator",
+        path: "generator",
         component: () => import('@/views/GeneratorView.vue'),
         children: [
           {
-            path: "",
-            name:'Filtros',
-            component: () => import('@/components/Generador/DataFilters.vue')
+            path:"filtros",
+            name: "Filtros",
+            component: () => import('@/components/Generador/DataFilters.vue'),
+            beforeEnter: authGuard
           },
           {
             path: "result",
             name: "Resultados",
-            component: () => import('@/components/Generador/ResultadoGenerador.vue')
+            component: () => import('@/components/Generador/ResultadoGenerador.vue'),
+            beforeEnter: authGuard
           }
         ]
       },
@@ -62,5 +59,6 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: routes,
 });
+
 
 export default router;
