@@ -23,7 +23,8 @@
                 <v-btn variant="outlined" :color="accentColor" @click="goCalculadora">Calculadora</v-btn>
               </v-col>
               <v-col>
-                <v-btn :color="accentColor" @click="goLogin">Inicio de Sesion</v-btn>
+                <v-btn v-if="!isLogin" :color="accentColor" @click="goLogin" :loading="auth0.isLoading">Inicio de Sesion</v-btn>
+                <v-btn v-else>Generador de Informe</v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -56,6 +57,7 @@
 import { useRouter } from 'vue-router';
 import { useAuth0 } from '@auth0/auth0-vue'
 import { useAuthStore } from '@/store/auth';
+import { computed } from 'vue';
 
 document.title = 'OpenCRA'
 const auth0 = useAuth0()
@@ -63,8 +65,8 @@ const router = useRouter()
 const accentColor = 'deep-orange-darken-1'
 const store = useAuthStore()
 
-const goCalculadora = () => {
-  router.push({ name: 'Calculadora' })
+const goCalculadora = async () => {
+  await router.push({ name: 'Calculadora' })
 }
 
 const goLogin = async () => {
@@ -82,20 +84,21 @@ const goLogin = async () => {
     console.log(err.message)
     await router.replace({ name: "Home" })
   }
+
 }
 
-const isLogin = () => {
-  return auth0.isAuthenticated.value
+const isLogin = computed(() => auth0.isAuthenticated.value)
+
+const leave = async () => {
+  await auth0.logout({
+    logoutParams: {
+      returnTo: window.location.origin.concat('/home')
+    }
+  })
 }
 
-const leave = async ()=>{
-await auth0.logout({logoutParams: {
-  returnTo: window.location.origin.concat('/home')
-}})
-}
 
-
-const goInfo = () => {
-  router.push('/moreInfo')
+const goInfo = async () => {
+  await router.push('/moreInfo')
 }
 </script>

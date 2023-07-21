@@ -3,7 +3,7 @@
     <v-btn density="comfortable" icon="mdi-arrow-left" @click="goBack"></v-btn>
     <v-toolbar-title class="text-center text-h4">{{ $route.name }}</v-toolbar-title>
     <v-toolbar-items>
-      <v-btn density="comfortable" icon="mdi-logout" @click="auth0.logout()"></v-btn>
+      <v-btn density="comfortable" v-if="auth0.isAuthenticated" icon="mdi-logout" @click="auth0.logout()"></v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
