@@ -23,7 +23,8 @@ const variants = {
         imagen: badImg
     },
     init: {
-        text: 'Complete los campos requiridos',
+        color: 'orange-accent-3',
+        text: 'Se utilizaron datos de La Encuesta Nacional de Consumo Alimentario (2010) y del programa de Monitoreo de Peligros Químicos Ministerio de Salud para realizar las estimaciones de exposición. ',
     }
 }
 
