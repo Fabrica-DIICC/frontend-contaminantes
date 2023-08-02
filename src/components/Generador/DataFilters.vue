@@ -5,6 +5,20 @@
       <v-col cols="3">
         <v-row>
           <v-col>
+            <p class="text-body-1 text-center">Region</p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-range-slider v-model="region" step="1" :min='0' :max='120' thumb-label :color="darkAccent"
+              :thumb-color="accentColor">
+            </v-range-slider>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="3">
+        <v-row>
+          <v-col>
             <p class="text-body-1 text-center">Edad</p>
           </v-col>
         </v-row>

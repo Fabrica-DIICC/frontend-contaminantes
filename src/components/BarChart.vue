@@ -42,7 +42,6 @@
             </v-container>
         </v-carousel-item>
     </v-carousel>
-
 </template>
   
 <script setup>
@@ -72,14 +71,14 @@ const chartDataChile = {
     ]
 }
 const chartDataChile2 = {
-labels: ['As', "As i", "Cd", "Hg", "Pb"],
-datasets: [
-    {
-        label: 'Consumo Contaminantes',
-        data: [store.nacional.prom_contaminantes.As, store.nacional.prom_contaminantes['As i'], store.nacional.prom_contaminantes.Cd, store.nacional.prom_contaminantes.Hg, store.nacional.prom_contaminantes.Pb],
-        backgroundColor: '#FF6384',
-    }
-]
+    labels: ['As', "As i", "Cd", "Hg", "Pb"],
+    datasets: [
+        {
+            label: 'Consumo Contaminantes',
+            data: [store.nacional.prom_contaminantes.As, store.nacional.prom_contaminantes['As i'], store.nacional.prom_contaminantes.Cd, store.nacional.prom_contaminantes.Hg, store.nacional.prom_contaminantes.Pb],
+            backgroundColor: '#FF6384',
+        }
+    ]
 }
 const optionsChile = {
     maintainAspectRatio: false,
@@ -108,7 +107,7 @@ const optionsChile = {
 
 onMounted(() => {
     for (const region in regiones.value) {
-        console.log(region)
+        //console.log(region)
         const regionObject = regiones.value[region]
         chartData.value.push({
             labels: ['As', "As i", "Cd", "Hg", "Pb"],

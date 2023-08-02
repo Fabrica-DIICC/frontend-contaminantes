@@ -9,6 +9,7 @@
     </thead>
     <tbody>
       <tr v-for="item in store.datosConsumo" :key="item">
+        <td>{{ item.region }}</td>
         <td>{{ item.edad }}</td>
         <td>{{ item.sexo }}</td>
         <td>{{ item.altura }}</td>
@@ -22,12 +23,14 @@
 </template>
 
 <script setup>
-import { useAppStore } from '@/store/app';
-
+import { useAppStore, } from '@/store/app';
 
 const store = useAppStore()
+console.log(store.result)
 
-const index = ['Edad', 'Sexo', 'Altura (cm)', 'Peso (Kg)', 'Nivel Socieconomico', 'Alimento', 'Cantidad Consumida (gr)']
+
+
+const index = ['Región', 'Edad', 'Sexo', 'Altura (cm)', 'Peso (Kg)', 'Nivel Socieconomico', 'Alimento', 'Cantidad Consumida (gr)']
 
 
 

@@ -24,7 +24,7 @@ export const useAppStore = defineStore('app', () => {
       datosConsumo.value = json.data.preview
       regiones.value = json.data.regiones
       return true
-    }catch(error){
+    } catch (error) {
       result.value = error
       return false
     }
